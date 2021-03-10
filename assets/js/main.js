@@ -362,7 +362,7 @@ function filterDevice(data) {
   } else if (deviceType == 3) {
     data = data.filter((x) => x.idCat == 3);
   }
-  // createDropDownList(data, 'modelsDDL', 'modelDiv', 'Model');
+  createDropDownList(data, 'modelsDDL', 'modelDiv', 'Model');
   console.log(data);
   return data;
 }
@@ -406,7 +406,6 @@ function checkForm() {
     firstName.classList.add('error');
     errorName.style.display = 'block';
   } else {
-    console.log('good');
     firstName.classList.remove('error');
     firstName.classList.add('success');
     errorName.style.display = 'none';
@@ -414,20 +413,20 @@ function checkForm() {
 
   if (!regExName.test(lastName.value)) {
     error.push('Last name is not valid');
-    lastName.classList.add('text-danger');
+    lastName.classList.add('error');
     errorLastName.style.display = 'block';
   } else {
-    lastName.classList.remove('text-danger');
+    lastName.classList.remove('error');
     lastName.classList.add('success');
     errorLastName.style.display = 'none';
   }
 
   if (!regExEmail.test(email.value)) {
     error.push('Email Not Valid');
-    email.classList.add('text-danger');
+    email.classList.add('error');
     errorEmail.style.display = 'block';
   } else {
-    email.classList.remove('text-danger');
+    email.classList.remove('error');
     email.classList.add('success');
     errorEmail.style.display = 'none';
   }
