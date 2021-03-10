@@ -303,12 +303,12 @@ section .grid {
 }
 
 /* Cart Page */
-.product img {
+.product-cart img {
   width: 150px;
   margin: auto;
   text-align: center;
 }
 
-.product i {
+.product-cart i {
   cursor: pointer;
 }
