@@ -189,7 +189,7 @@ section.section-5 .btn {
   display: inline;
   width: 24px;
   height: 24px;
-  border: 1px solid blue;
+  border: 1px solid #f4f4f4;
   border-radius: 50%;
   margin: 0 0.6rem;
 }
