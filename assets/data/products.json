@@ -1,0 +1,334 @@
+[
+  {
+    "idCat": 1,
+    "idModel": 6,
+    "name": "iPhone 12 Pro Max",
+    "img": "assets/img/iphone12promaxshop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD"],
+    "price": 999,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 5,
+    "name": "iPhone 12 Pro ",
+    "img": "assets/img/iphone12proshop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD"],
+    "price": 1099,
+    "display": {
+      "size": "6.1",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "14mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A14",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": [ "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 1,
+    "name": "iPhone 11",
+    "img": "assets/img/iphone11shop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD"],
+    "price": 839,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 3,
+    "name": "iPhone 12 Mini",
+    "img": "assets/img/iphone12promaxshop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 999,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 2,
+    "idModel": 7,
+    "name": "MacBook Pro 13",
+    "img": "assets/img/macbookpro13.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 1399,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 3,
+    "idModel": 9,
+    "name": "iPad Pro",
+    "img": "assets/img/ipadproshop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 1199,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 3,
+    "idModel": 11,
+    "name": "iPad",
+    "img": "assets/img/ipadshop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 929,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 1,
+    "name": "iPhone 11",
+    "img": "assets/img/iphone11shop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 829,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 1,
+    "name": "iPhone 11",
+    "img": "assets/img/iphone11shop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 829,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 2,
+    "idModel": 8,
+    "name": "MacBook Pro 16",
+    "img": "assets/img/macbookpro16.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 1699,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 4,
+    "name": "iPhone 12 ",
+    "img": "assets/img/iphone12shop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 1699,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 3,
+    "idModel": 10,
+    "name": "iPad Air",
+    "img": "assets/img/ipadairshop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 999,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 3,
+    "idModel": 10,
+    "name": "iPad Air",
+    "img": "assets/img/ipadairshop-2.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 999,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 2,
+    "name": "iPhone 11 Pro",
+    "img": "assets/img/iphone11proshop-1.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 870,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  },
+
+  {
+    "idCat": 1,
+    "idModel": 2,
+    "name": "iPhone 11 Pro",
+    "img": "assets/img/iphone11proshop.jpg",
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "price": 899,
+    "display": {
+      "size": "5.8",
+      "type": "Super Retina XDR display"
+    },
+    "camera": {
+      "sensor": "12mp",
+      "recording": "4K Resolution on recordin available now"
+    },
+    "unlock": "FaceID",
+    "processor": "A13",
+    "battery": "Hight quality battery that last for more than 26h",
+    "capacity": ["64GB", "128GB", "256GB"],
+    "inCart": 0
+  }
+
+
+  
+]

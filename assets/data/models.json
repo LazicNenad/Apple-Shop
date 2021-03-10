@@ -1,0 +1,57 @@
+[
+  {
+    "idModel": 1,
+    "name": "iPhone 11",
+    "idCat": 1
+  },
+  {
+    "idModel": 2,
+    "name": "iPhone 11 Pro",
+    "idCat": 1
+  },
+  {
+    "idModel": 3,
+    "name": "iPhone 12 Mini",
+    "idCat": 1
+  },
+  {
+    "idModel": 4,
+    "name": "iPhone 12",
+    "idCat": 1
+  },
+  {
+    "idModel": 5,
+    "name": "iPhone 12 Pro",
+    "idCat": 1
+  },
+  {
+    "idModel": 6,
+    "name": "iPhone 12 Pro Max",
+    "idCat": 1
+  },
+  {
+    "idModel": 7,
+    "name": "MacBook Pro 13",
+    "idCat": 2
+  },
+  {
+    "idModel": 8,
+    "name": "MacBook Pro 16",
+    "idCat": 2
+  },
+  {
+    "idModel": 9,
+    "name": "iPad Pro",
+    "idCat": 3
+  },
+  {
+    "idModel": 10,
+    "name": "iPad Air",
+    "idCat": 3
+  },
+  {
+    "idModel": 11,
+    "name": "iPad",
+    "idCat": 3
+  }
+]

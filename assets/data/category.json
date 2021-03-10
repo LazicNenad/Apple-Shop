@@ -1,0 +1,14 @@
+[
+  {
+    "idCat": 1,
+    "name": "iPhone"
+  },
+  {
+    "idCat": 2,
+    "name": "Mac"
+  },
+  {
+    "idCat": 3,
+    "name": "iPad"
+  }
+]
