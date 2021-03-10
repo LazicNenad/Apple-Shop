@@ -4,7 +4,7 @@
     "idModel": 6,
     "name": "iPhone 12 Pro Max",
     "img": "assets/img/iphone12promaxshop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD"],
+    "colors": ["#dec9af", "#dfefdb", "#a20018"],
     "price": 999,
     "display": {
       "size": "5.8",
@@ -26,7 +26,7 @@
     "idModel": 5,
     "name": "iPhone 12 Pro ",
     "img": "assets/img/iphone12proshop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD"],
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#a20018"],
     "price": 1099,
     "display": {
       "size": "6.1",
@@ -48,7 +48,7 @@
     "idModel": 1,
     "name": "iPhone 11",
     "img": "assets/img/iphone11shop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD"],
+    "colors": ["#d8dbda","#4a4646", "#FAD7BD"],
     "price": 839,
     "display": {
       "size": "5.8",
@@ -70,7 +70,7 @@
     "idModel": 3,
     "name": "iPhone 12 Mini",
     "img": "assets/img/iphone12promaxshop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#dec9af", "#3e5d69", "#535150", "#FAD7BD", "#a20018"],
     "price": 999,
     "display": {
       "size": "5.8",
@@ -92,7 +92,7 @@
     "idModel": 7,
     "name": "MacBook Pro 13",
     "img": "assets/img/macbookpro13.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#a20018"],
     "price": 1399,
     "display": {
       "size": "5.8",
@@ -114,7 +114,7 @@
     "idModel": 9,
     "name": "iPad Pro",
     "img": "assets/img/ipadproshop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#dec9af", "#EBEBE3", "#FAD7BD"],
     "price": 1199,
     "display": {
       "size": "5.8",
@@ -136,7 +136,7 @@
     "idModel": 11,
     "name": "iPad",
     "img": "assets/img/ipadshop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#3e5d69", "#dfefdb", "#535150", "#FAD7BD", "#000"],
     "price": 929,
     "display": {
       "size": "5.8",
@@ -158,7 +158,7 @@
     "idModel": 1,
     "name": "iPhone 11",
     "img": "assets/img/iphone11shop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#000"],
     "price": 829,
     "display": {
       "size": "5.8",
@@ -180,7 +180,7 @@
     "idModel": 1,
     "name": "iPhone 11",
     "img": "assets/img/iphone11shop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#4E5851", "#3e5d69", "#535150","#000", "#fff"],
     "price": 829,
     "display": {
       "size": "5.8",
@@ -202,7 +202,7 @@
     "idModel": 8,
     "name": "MacBook Pro 16",
     "img": "assets/img/macbookpro16.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#3e5d69", "#000"],
     "price": 1699,
     "display": {
       "size": "5.8",
@@ -224,7 +224,7 @@
     "idModel": 4,
     "name": "iPhone 12 ",
     "img": "assets/img/iphone12shop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#3e5d69","#a20018", "#fff"],
     "price": 1699,
     "display": {
       "size": "5.8",
@@ -246,7 +246,7 @@
     "idModel": 10,
     "name": "iPad Air",
     "img": "assets/img/ipadairshop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#dec9af", "#EBEBE3", "#535150", "#FAD7BD", "#a20018"],
     "price": 999,
     "display": {
       "size": "5.8",
@@ -290,7 +290,7 @@
     "idModel": 2,
     "name": "iPhone 11 Pro",
     "img": "assets/img/iphone11proshop-1.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#4E5851", "#dec9af", "#4a4646"],
     "price": 870,
     "display": {
       "size": "5.8",
@@ -312,7 +312,7 @@
     "idModel": 2,
     "name": "iPhone 11 Pro",
     "img": "assets/img/iphone11proshop.jpg",
-    "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#fff"],
+    "colors": ["#535150", "#FAD7BD", "#4a4646"],
     "price": 899,
     "display": {
       "size": "5.8",
