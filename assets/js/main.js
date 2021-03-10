@@ -8,6 +8,7 @@ let textarea = document.getElementById('taMessage');
 let submit = document.getElementById('submit');
 let url = window.location.href.split('/');
 let adresa = url[url.length - 1];
+console.log(adresa);
 
 // Document ready (jQuery)
 $(document).ready(function () {
@@ -31,15 +32,19 @@ $(document).ready(function () {
     }
   });
 });
+
 // Window onload
 window.onload = function () {
   ajaxCall('menu', printMenu);
 
   if (adresa == 'index.html') {
     submit.addEventListener('click', checkForm);
+  } else if (adresa == 'cart.html') {
+    displayCart();
+    onLoadCartNumber();
   } else if (adresa == 'store.html') {
     ajaxCall('products', printProducts);
-
+    onLoadCartNumber();
     $.ajax({
       method: 'get',
       url: 'assets/data/models.json',
@@ -241,7 +246,7 @@ function displayCart() {
     html = '';
     Object.values(cartItems).map((item) => {
       html += `
-        <div class="col-6  border-left border-right border-bottom product"> 
+        <div class="col-6  border-left border-right border-bottom product-cart"> 
           <i class="far fa-times-circle"></i>
           <img src="${item.img}">
           <span> ${item.name} </span>
@@ -249,7 +254,7 @@ function displayCart() {
         <div class="col-3 border-left border-right border-bottom product d-flex justify-content-center align-items-center">
           <p> ${item.price} $</p>
         </div>
-        <div class="col-3 border-left border-right border-bottom d-flex justify-content-center align-items-center product">
+        <div class="col-3 border-left border-right border-bottom d-flex justify-content-center align-items-center product-cart">
         <i class="fas fa-arrow-left p-4"></i>
           ${item.inCart}
           <i class="fas fa-arrow-right p-4"></i>
@@ -442,5 +447,3 @@ function checkForm() {
     location.reload();
   }
 }
-
-displayCart();
