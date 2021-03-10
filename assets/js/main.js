@@ -247,7 +247,7 @@ function displayCart() {
     Object.values(cartItems).map((item) => {
       html += `
         <div class="col-6  border-left border-right border-bottom product-cart"> 
-          <i class="far fa-times-circle"></i>
+          <i class="far fa-times-circle delete-icon"></i>
           <img src="${item.img}">
           <span> ${item.name} </span>
         </div>
@@ -270,7 +270,17 @@ function displayCart() {
     `;
   }
   productContainer.innerHTML = html;
+
+  let allXsigns = document.querySelectorAll('.delete-icon');
+  console.log(allXsigns);
+  allXsigns.forEach((sign, index) => {
+    console.log(sign);
+
+    sign.addEventListener('click', deleteItem);
+  });
 }
+
+function deleteItem() {}
 
 function onLoadCartNumber() {
   let productNumbers = localStorage.getItem('cartNumbers');
@@ -362,7 +372,7 @@ function filterDevice(data) {
   } else if (deviceType == 3) {
     data = data.filter((x) => x.idCat == 3);
   }
-  createDropDownList(data, 'modelsDDL', 'modelDiv', 'Model');
+  // createDropDownList(data, 'modelsDDL', 'modelDiv', 'Model');
   console.log(data);
   return data;
 }
