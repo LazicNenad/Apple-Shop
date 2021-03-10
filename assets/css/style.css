@@ -312,3 +312,8 @@ section .grid {
 .product-cart i {
   cursor: pointer;
 }
+
+.author-image {
+  border-radius: 10px;
+  width: 350px;
+}
