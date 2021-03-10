@@ -41,10 +41,9 @@ window.onload = function () {
     submit.addEventListener('click', checkForm);
   } else if (adresa == 'cart.html') {
     displayCart();
-    onLoadCartNumber();
   } else if (adresa == 'store.html') {
     ajaxCall('products', printProducts);
-    onLoadCartNumber();
+
     $.ajax({
       method: 'get',
       url: 'assets/data/models.json',
@@ -128,9 +127,11 @@ function printMenu(data) {
   `;
 
   document.getElementById('menu').innerHTML = html;
+  onLoadCartNumber();
 }
 // Function for printing products
 function printProducts(data) {
+  onLoadCartNumber();
   // data = filterDevice(data);
   data = searchPhone(data);
   data = sort(data);
@@ -148,7 +149,7 @@ function printProducts(data) {
 
     for (let obj of data) {
       html += `
-    <div class="container col-lg-3 col-md-4 col-xs-12 my-4">
+    <div class="container col-lg-3 col-md-4 col-xs-12 my-4 ">
       <div class="product">
         <h5 class="text-center">${obj.name}</h5>
         <a href="#" class="modals"><img src="${obj.img}" alt="${obj.name}"/></a>
@@ -159,7 +160,7 @@ function printProducts(data) {
       `;
       }
       html += `
-        </div>
+        </div class=>
           <hr/>
           <p class="text-center"> Starting price $${obj.price}</p>
           <a href="#" style="display: block" class="btn btn-primary m-auto add-cart">
