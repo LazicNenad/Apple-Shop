@@ -1,9 +1,11 @@
 [
   {
+    "id": 1,
     "idCat": 1,
     "idModel": 6,
     "name": "iPhone 12 Pro Max",
     "img": "assets/img/iphone12promaxshop.jpg",
+    "imgHover": "assets/img/iphone12promaxshophover.jpg",
     "colors": ["#dec9af", "#dfefdb", "#a20018"],
     "price": 999,
     "display": {
@@ -22,6 +24,7 @@
   },
 
   {
+    "id": 2,
     "idCat": 1,
     "idModel": 5,
     "name": "iPhone 12 Pro ",
@@ -44,6 +47,7 @@
   },
 
   {
+    "id": 3,
     "idCat": 1,
     "idModel": 1,
     "name": "iPhone 11",
@@ -66,6 +70,7 @@
   },
 
   {
+    "id": 4,
     "idCat": 1,
     "idModel": 3,
     "name": "iPhone 12 Mini",
@@ -88,6 +93,7 @@
   },
 
   {
+    "id": 5,
     "idCat": 2,
     "idModel": 7,
     "name": "MacBook Pro 13",
@@ -110,6 +116,7 @@
   },
 
   {
+    "id": 6,
     "idCat": 3,
     "idModel": 9,
     "name": "iPad Pro",
@@ -132,6 +139,7 @@
   },
 
   {
+    "id": 7,
     "idCat": 3,
     "idModel": 11,
     "name": "iPad",
@@ -154,6 +162,7 @@
   },
 
   {
+    "id": 8,
     "idCat": 1,
     "idModel": 1,
     "name": "iPhone 11",
@@ -176,6 +185,7 @@
   },
 
   {
+    "id": 9,
     "idCat": 1,
     "idModel": 1,
     "name": "iPhone 11",
@@ -198,6 +208,7 @@
   },
 
   {
+    "id": 10,
     "idCat": 2,
     "idModel": 8,
     "name": "MacBook Pro 16",
@@ -220,6 +231,7 @@
   },
 
   {
+    "id": 11,
     "idCat": 1,
     "idModel": 4,
     "name": "iPhone 12 ",
@@ -242,6 +254,7 @@
   },
 
   {
+    "id": 12,
     "idCat": 3,
     "idModel": 10,
     "name": "iPad Air",
@@ -264,6 +277,7 @@
   },
 
   {
+    "id": 13,
     "idCat": 3,
     "idModel": 10,
     "name": "iPad Air",
@@ -286,6 +300,7 @@
   },
 
   {
+    "id": 14,
     "idCat": 1,
     "idModel": 2,
     "name": "iPhone 11 Pro",
@@ -308,6 +323,7 @@
   },
 
   {
+    "id": 15,
     "idCat": 1,
     "idModel": 2,
     "name": "iPhone 11 Pro",
