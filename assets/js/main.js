@@ -13,13 +13,21 @@ console.log(adresa);
 // Document ready (jQuery)
 $(document).ready(function () {
   checkLocalStorageData();
-  onLoadCartNumber();
+
   $('#searchInput').keyup(filterChange);
   $('#submit').click(getFormValues);
   $('#sort').change(filterChange);
   //Scroll To Top
   $('.scrollTop').on('click', () => {
     window.scrollTo(0, 0);
+  });
+
+  $.ajax({
+    method: 'get',
+    url: 'assets/data/products.json',
+    success: function (data) {
+      setItemToLocalStorage('products', data);
+    },
   });
 
   //Initially hidden button
@@ -40,7 +48,6 @@ window.onload = function () {
   if (adresa == 'index.html') {
     submit.addEventListener('click', checkForm);
   } else if (adresa == 'cart.html') {
-    displayCart();
   } else if (adresa == 'store.html') {
     ajaxCall('products', printProducts);
 
@@ -163,7 +170,7 @@ function printProducts(data) {
         </div class=>
           <hr/>
           <p class="text-center"> Starting price $${obj.price}</p>
-          <a href="#" style="display: block" class="btn btn-primary m-auto add-cart">
+          <a href="#" data-id=${obj.id} style="display: block" class="btn btn-primary m-auto add-cart">
             Buy
           </a>  
       </div>
@@ -173,122 +180,241 @@ function printProducts(data) {
 
     document.getElementById('products').innerHTML = html;
   }
-  var carts = document.querySelectorAll('.add-cart');
-  console.log(carts);
-  carts.forEach((cart, index) => {
-    cart.addEventListener('click', (event) => {
-      // console.log(data[index]);
-      event.preventDefault();
-      cartNumbers(data[index]);
-      totalCost(data[index]);
-    });
-  });
+  $('.add-cart').click(addToCart);
+  // var carts = document.querySelectorAll('.add-cart');
+  // console.log(carts);
+  // carts.forEach((cart, index) => {
+  //   cart.addEventListener('click', (event) => {
+  //     // console.log(data[index]);
+  //     event.preventDefault();
+  //     cartNumbers(data[index]);
+  //     totalCost(data[index]);
+  //   });
+  // });
 }
-// Function Cart Number
-function cartNumbers(product) {
-  // console.log(product);
-  let productNumbers = localStorage.getItem('cartNumbers');
-  productNumbers = parseInt(productNumbers);
-  if (productNumbers) {
-    localStorage.setItem('cartNumbers', productNumbers + 1);
-    document.querySelector('#itemNumber').textContent = productNumbers + 1;
-  } else {
-    localStorage.setItem('cartNumbers', 1);
-    document.querySelector('#itemNumber').textContent = '1';
-  }
 
-  setItems(product);
+// Local Storage set and get
+function setItemToLocalStorage(name, data) {
+  localStorage.setItem(name, JSON.stringify(data));
 }
-//Function setItems
-function setItems(product) {
-  let cartItems = localStorage.getItem('productsInCart');
-  cartItems = JSON.parse(cartItems);
 
-  if (cartItems != null) {
-    if (cartItems[product.name] == undefined) {
-      cartItems = {
-        ...cartItems,
-        [product.name]: product,
-      };
+function getItemFromLocalStorage(name) {
+  return JSON.parse(localStorage.getItem(name));
+}
+
+function addToCart(e) {
+  e.preventDefault();
+  let id = $(this).data('id');
+  let productsFromCart = getItemFromLocalStorage('productsCart');
+
+  if (productsFromCart) {
+    if (productIsAlreadyInCart()) {
+      updateQuantity();
+      onLoadCartNumber();
+    } else {
+      addToLocalStorage();
+      onLoadCartNumber();
     }
-
-    cartItems[product.name].inCart += 1;
   } else {
-    product.inCart = 1;
-    cartItems = {
-      [product.name]: product,
+    addFirstItemToLocalStorage();
+    onLoadCartNumber();
+  }
+
+  // Add First Item To Local Storage
+  function addFirstItemToLocalStorage() {
+    let products = [];
+    products[0] = {
+      id: id,
+      quantity: 1,
     };
+
+    setItemToLocalStorage('productsCart', products);
   }
-  console.log(cartItems);
 
-  localStorage.setItem('productsInCart', JSON.stringify(cartItems));
-}
-// Function totalCost
-function totalCost(product) {
-  let cartCost = localStorage.getItem('totalCost');
-
-  console.log(cartCost, typeof cartCost);
-
-  if (cartCost != null) {
-    cartCost = parseInt(cartCost);
-    localStorage.setItem('totalCost', cartCost + product.price);
-  } else {
-    localStorage.setItem('totalCost', product.price);
+  //Function if product is already in local storage
+  function productIsAlreadyInCart() {
+    return productsFromCart.filter((x) => x.id == id).length;
   }
-}
 
-function displayCart() {
-  let cartItems = localStorage.getItem('productsInCart');
-  cartItems = JSON.parse(cartItems);
-  console.log(cartItems);
-  let productContainer = document.querySelector('#products');
-  console.log(productContainer);
-  if (cartItems && productContainer) {
-    html = '';
-    Object.values(cartItems).map((item) => {
-      html += `
-        <div class="col-6  border-left border-right border-bottom product-cart"> 
-          <i class="far fa-times-circle delete-icon"></i>
-          <img src="${item.img}">
-          <span> ${item.name} </span>
-        </div>
-        <div class="col-3 border-left border-right border-bottom product d-flex justify-content-center align-items-center">
-          <p> ${item.price} $</p>
-        </div>
-        <div class="col-3 border-left border-right border-bottom d-flex justify-content-center align-items-center product-cart">
-        <i class="fas fa-arrow-left p-4"></i>
-          ${item.inCart}
-          <i class="fas fa-arrow-right p-4"></i>
-        </div>
-        
-      `;
+  //Function updateQuantity
+  function updateQuantity() {
+    let productsFromLS = getItemFromLocalStorage('productsCart');
+    console.log(productsFromLS);
+    productsFromLS.forEach((value) => {
+      console.log(value);
+      if (value.id == id) {
+        value.quantity += 1;
+      }
     });
 
-    html += `
-    <h3 class="mt-5 text-left">Total: ${localStorage.getItem(
-      'totalCost'
-    )} $</h3>
-    `;
+    setItemToLocalStorage('productsCart', productsFromLS);
   }
-  productContainer.innerHTML = html;
 
-  let allXsigns = document.querySelectorAll('.delete-icon');
-  console.log(allXsigns);
-  allXsigns.forEach((sign, index) => {
-    console.log(sign);
-
-    sign.addEventListener('click', deleteItem);
-  });
+  // Function addToLocalStorage
+  function addToLocalStorage() {
+    let productsFromLS = getItemFromLocalStorage('productsCart');
+    productsFromLS.push({
+      id: id,
+      quantity: 1,
+    });
+    setItemToLocalStorage('productsCart', productsFromLS);
+  }
 }
-
-function deleteItem() {}
 
 function onLoadCartNumber() {
-  let productNumbers = localStorage.getItem('cartNumbers');
+  let productNumbers = getItemFromLocalStorage('productsCart');
+  if (productNumbers != null) {
+    var broj = 0;
+    productNumbers.forEach((value) => {
+      broj += value.quantity;
+    });
+    // console.log(broj);
+    displayCartData();
 
-  if (productNumbers) {
-    document.querySelector('#itemNumber').textContent = productNumbers;
+    // let numberOfProducts = productNumbers.length;
+    document.querySelector('#itemNumber').textContent = broj;
+  } else {
+    emptyCartData();
   }
+}
+
+// Function for displaying on cart html
+function displayCartData() {
+  var productsFromLS = getItemFromLocalStorage('productsCart');
+  var allProducts = getItemFromLocalStorage('products');
+  let array = [];
+
+  array = allProducts.filter((p) => {
+    for (let prod of productsFromLS) {
+      if (p.id == prod.id) {
+        p.quantity = prod.quantity;
+        return true;
+      }
+    }
+  });
+  // console.log(array);
+
+  $('#products-header').html(`
+  <div class="col-12 mt-5">
+  <div class="row">
+    <div class="col-3 border text-center">
+      <h3>Product</h3>
+    </div>
+    <div class="col-3 border text-center">
+      <h3>Price</h3>
+    </div>
+    <div class="col-3 border text-center">
+      <h3>Quantity</h3>
+    </div>
+    <div class="col-3 border text-center">
+    <h3>Equals</h3>
+    </div>
+
+  </div>
+</div>
+  `);
+
+  printCartItems(array);
+}
+
+//Function for printing cart items
+function printCartItems(array) {
+  html = '';
+  var total = 0;
+  for (let obj of array) {
+    total += obj.price * obj.quantity;
+    console.log(obj);
+    html += `
+    <div class="col-12">
+      <div class="row">
+        <div class="col-3 border d-flex justify-content-center align-items-center quantity">
+          <i class="far fa-times-circle delete-icon" onclick="return removeFromCart(${
+            obj.id
+          })"></i>
+          <img src="${obj.img}" alt="${obj.name}" class="image-cart">   
+          <p class="pt-1"> ${obj.name}<p>      
+        </div>
+        <div class="col-3 border d-flex justify-content-center align-items-center">
+          <h5 class="text-center"> ${obj.price}$ </h5>
+        </div>
+        <div class="col-3 border d-flex justify-content-center align-items-center quantity">
+          <i class="fas fa-arrow-left" onclick="return decreseQuantity(${
+            obj.id
+          })"></i>
+          <h5 class="text-center"> ${obj.quantity} </h5>
+          <i class="fas fa-arrow-right" onclick="return increaseQuantity(${
+            obj.id
+          })"></i>
+        </div>
+        <div class="col-3 border d-flex justify-content-center align-items-center">
+          <h5> ${obj.price * obj.quantity} $ </h5>
+        </div>
+      </div>
+    </div>
+
+    
+    `;
+  }
+  html += `
+   <div class="mt-3">
+    <h2> Total: ${total} $ </h2>
+   </div>
+   <div class="row>
+   <div class="container">
+     <input type="button" id="button-buy" class="btn btn-primary mt-2" value="Buy">
+   </div>
+ </div>
+  `;
+  $('#products-cart').html(html);
+  $('#button-buy').click(function () {
+    alert('Thanks for buying');
+    clearCart();
+  });
+}
+function clearCart() {
+  localStorage.removeItem('productsCart');
+  location.reload();
+}
+
+//Empty cart data function
+function emptyCartData() {
+  $('#products-header').html(
+    '<h1 class="mt-3">Your cart is empty. <a href="store.html">Go to shop!</a></h1>'
+  );
+}
+
+function removeFromCart(id) {
+  let products = getItemFromLocalStorage('productsCart');
+  let filtered = products.filter((p) => p.id != id);
+
+  setItemToLocalStorage('productsCart', filtered);
+
+  displayCartData();
+}
+
+function decreseQuantity(id) {
+  let products = getItemFromLocalStorage('productsCart');
+  products.forEach((value) => {
+    if (value.id == id) {
+      value.quantity--;
+    }
+  });
+
+  setItemToLocalStorage('productsCart', products);
+  displayCartData();
+}
+
+function increaseQuantity(id) {
+  let products = getItemFromLocalStorage('productsCart');
+  products.forEach((value) => {
+    if (value.id == id) {
+      value.quantity++;
+    }
+  });
+  // location.reload();
+
+  setItemToLocalStorage('productsCart', products);
+  displayCartData();
 }
 
 // Function for creating drop down List
@@ -311,6 +437,7 @@ function createDropDownList(data, idList, idBlock, name) {
   document.getElementById(idBlock).innerHTML = ddl;
   $('#' + idList).change(filterChange);
 }
+
 // Local Storage getting and setting values of form
 function getFormValues() {
   let emailV = $('#email').val();
@@ -385,7 +512,7 @@ function filterModel(data) {
     if (modelType == 0) {
       return data;
     } else if (modelType == obj.idModel) {
-      console.log('usao');
+      // console.log('usao');
       data = data.filter((x) => x.idModel == obj.idModel);
       deviceType = obj.idCat;
     }
