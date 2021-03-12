@@ -1,6 +1,5 @@
-// let modal = document.getElementById('myModal');
+let modal = document.getElementById('myModal');
 // let btn = document.getElementById('modal');
-// let span = document.querySelectorAll('.close')[0];
 let firstName = document.getElementById('firstName');
 let lastName = document.getElementById('lastName');
 let email = document.getElementById('email');
@@ -87,11 +86,11 @@ window.onload = function () {
     //   modal.style.display = 'none';
     // });
 
-    // window.onclick = function (event) {
-    //   if (event.target == modal) {
-    //     modal.style.display = 'none';
-    //   }
-    // };
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
   }
 };
 
@@ -159,7 +158,7 @@ function printProducts(data) {
     <div class="container col-lg-3 col-md-4 col-xs-12 my-4 ">
       <div class="product">
         <h5 class="text-center">${obj.name}</h5>
-        <a href="#" class="modals"><img src="${obj.img}" alt="${obj.name}"/></a>
+        <a href="#" class="modals"><img class="slika-klik" src="${obj.img}" alt="${obj.name}" data-idm="${obj.id}"/></a>
         <div class="color-holder d-flex justify-content-center">`;
       for (let color of obj.colors) {
         html += `
@@ -181,16 +180,116 @@ function printProducts(data) {
     document.getElementById('products').innerHTML = html;
   }
   $('.add-cart').click(addToCart);
-  // var carts = document.querySelectorAll('.add-cart');
-  // console.log(carts);
-  // carts.forEach((cart, index) => {
-  //   cart.addEventListener('click', (event) => {
-  //     // console.log(data[index]);
-  //     event.preventDefault();
-  //     cartNumbers(data[index]);
-  //     totalCost(data[index]);
-  //   });
-  // });
+  $('.slika-klik').click(openModal);
+}
+// Open modal
+function openModal(e) {
+  modal.style.display = 'block';
+  e.preventDefault();
+  let idImage = $(this).data('idm');
+  console.log(idImage);
+
+  let productsFromLS = getItemFromLocalStorage('products');
+  productsFromLS = productsFromLS.filter((p) => p.id == idImage);
+  console.log(productsFromLS);
+  printModal(productsFromLS);
+}
+
+//Modal Function
+function printModal(data) {
+  console.log(data);
+  console.log(data[0].name);
+  $('#myModal').html(`
+    <div class="modal-content">
+      <span class="close text-right"> &times; </span>
+      <h1 class="text-center"> ${data[0].name} </h1>
+      <hr>
+      <div class="divImg d-flex justify-content-center">
+        <img src="${data[0].img}" alt="${data[0].name}" class="prodImg">
+      </div>
+      <div class="tableDiv mt-2">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td> Price: </td>
+              <td> ${data[0].price} $ </td>
+            </tr>
+            <tr>
+              <td> Unlock </td>
+              <td> ${data[0].unlock} </td>
+            </tr>
+            <tr>
+              <td> Processor: </td>
+              <td> ${data[0].processor} </td>
+            </tr>
+            <tr>
+              <td> Battery: </td>
+              <td> ${data[0].battery} </td>
+            </tr>
+            <tr>
+              <td>                
+                  Display:             
+              </td>
+              <td>                
+                  ${printObject(data[0].display)}              
+              </td>
+            </tr>
+            <tr>
+              <td>Colors Available: </td>
+              <td class="d-flex  align-items-center"> ${printColors(
+                data[0].colors
+              )} </td>
+            </tr>
+            </tr>
+              <td> Camera: </td>
+              <td> ${printObject(data[0].camera)} </td>
+            </tr>
+            <tr>
+              <td> Capacity: </td>
+              <td> ${printArray(data[0].capacity)} </td>
+            </tr>
+          </tbody>
+        </table>  
+    </div>
+  `);
+  var span = $('.close')[0];
+  span.addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+  console.log(span);
+  function printObject(object) {
+    html = '';
+    for (let obj in object) {
+      html += `
+      <li>
+        ${obj}: ${object[obj]}
+      </li>
+      `;
+    }
+    return html;
+  }
+
+  function printColors(array) {
+    html = '';
+    array.forEach((color) => {
+      html += `
+      <span class="color" style="background-color: ${color}"> </span>
+      `;
+    });
+    return html;
+  }
+
+  function printArray(array) {
+    html = '';
+    array.forEach((element) => {
+      html += `
+      <li>
+        ${element}
+      </li>
+      `;
+    });
+    return html;
+  }
 }
 
 // Local Storage set and get
@@ -260,7 +359,7 @@ function addToCart(e) {
     setItemToLocalStorage('productsCart', productsFromLS);
   }
 }
-
+// Function on load cart number
 function onLoadCartNumber() {
   let productNumbers = getItemFromLocalStorage('productsCart');
   if (productNumbers != null) {
@@ -371,6 +470,8 @@ function printCartItems(array) {
     clearCart();
   });
 }
+
+// Function clear Cart
 function clearCart() {
   localStorage.removeItem('productsCart');
   location.reload();
@@ -383,6 +484,7 @@ function emptyCartData() {
   );
 }
 
+// Functiion remove from cart
 function removeFromCart(id) {
   let products = getItemFromLocalStorage('productsCart');
   let filtered = products.filter((p) => p.id != id);
@@ -392,11 +494,14 @@ function removeFromCart(id) {
   displayCartData();
 }
 
+// Function for decreasing quantity
 function decreseQuantity(id) {
   let products = getItemFromLocalStorage('productsCart');
   products.forEach((value) => {
     if (value.id == id) {
-      value.quantity--;
+      if (value.quantity >= 1) {
+        value.quantity--;
+      }
     }
   });
 
@@ -404,6 +509,7 @@ function decreseQuantity(id) {
   displayCartData();
 }
 
+// Function for increasing quantity
 function increaseQuantity(id) {
   let products = getItemFromLocalStorage('productsCart');
   products.forEach((value) => {
@@ -446,12 +552,16 @@ function getFormValues() {
   let textAreaV = $('#taMessage').val();
   setUsersData(emailV, firstNameV, lastNameV, textAreaV);
 }
+
+// Setting users values
 function setUsersData(email, firstName, lastName, textArea) {
   localStorage.setItem('email', email);
   localStorage.setItem('firstName', firstName);
   localStorage.setItem('lastName', lastName);
   localStorage.setItem('textarea', textArea);
 }
+
+// Checking if local storage is empty
 function checkLocalStorageData() {
   let email = localStorage.getItem('email');
   let firstName = localStorage.getItem('firstName');
@@ -469,24 +579,18 @@ function checkLocalStorageData() {
     $('#taMessage').val(textarea);
   }
 }
+
 // Function Sort
 function sort(data) {
   const sortType = document.getElementById('sort').value;
-  if (sortType == 'nameAsc') {
-    return data.sort((a, b) =>
-      a.name.toLowerCase().trim() < b.name.toLowerCase().trim() ? 1 : -1
-    );
-  } else if (sortType == 'nameDesc') {
-    return data.sort((a, b) =>
-      a.name.toLowerCase().trim() > b.name.toLowerCase().trim() ? 1 : -1
-    );
-  } else if (sortType == 'priceAsc') {
+  if (sortType == 'priceAsc') {
     return data.sort((a, b) => (a.price > b.price ? 1 : -1));
   } else if (sortType == 'priceDesc') {
     return data.sort((a, b) => (a.price < b.price ? 1 : -1));
   }
   return data;
 }
+
 // Filter function
 function filterDevice(data) {
   var deviceType = $('#deviceTypeDDL').val();
@@ -501,9 +605,12 @@ function filterDevice(data) {
     data = data.filter((x) => x.idCat == 3);
   }
   // createDropDownList(data, 'modelsDDL', 'modelDiv', 'Model');
+
   console.log(data);
   return data;
 }
+
+// Filter model function
 function filterModel(data) {
   var deviceType = $('#deviceTypeDDL').val();
   var modelType = $('#modelsDDL').val();
@@ -519,6 +626,7 @@ function filterModel(data) {
   }
   return data;
 }
+
 // Seach Filtering
 function searchPhone(data) {
   let searchVal = $('#searchInput').val().toLowerCase();
@@ -529,10 +637,12 @@ function searchPhone(data) {
   }
   return data;
 }
+
 // Filter Change
 function filterChange() {
   ajaxCall('products', printProducts);
 }
+
 // Regular Expression
 function checkForm() {
   let regExName = /[A-ZĆČŠĐŽ][a-zčćžšđ]{2,12}/;
