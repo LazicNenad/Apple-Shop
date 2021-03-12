@@ -33,17 +33,20 @@
     "price": 1099,
     "display": {
       "size": "6.1",
-      "type": "Super Retina XDR display"
+      "type": "Zaslon Retina HD",
+      "touch": "Haptic Touch"
     },
     "camera": {
-      "sensor": "14mp",
-      "recording": "4K Resolution on recordin available now"
+      "sensor": "16mp",
+      "recording": "4K Resolution on all 3 cameras at the same time",
+      "blend": "blende ƒ/1,8",
+      "optic stabilization": "Stable image"
     },
     "unlock": "FaceID",
-    "processor": "A14",
+    "processor": "A14 Bionic",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": [ "128GB", "256GB"],
-    "inCart": 0
+    "capacity": [ "128GB", "256GB", "512GB"]
+    
   },
 
   {
@@ -55,18 +58,18 @@
     "colors": ["#d8dbda","#4a4646", "#FAD7BD"],
     "price": 839,
     "display": {
-      "size": "5.8",
+      "size": "6.1",
       "type": "Super Retina XDR display"
     },
     "camera": {
-      "sensor": "12mp",
+      "sensor": "14mp",
       "recording": "4K Resolution on recordin available now"
     },
     "unlock": "FaceID",
-    "processor": "A13",
-    "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "processor": "A13 NG",
+    "battery": "Highest quality batteries for 2018 year",
+    "capacity": ["64GB", "128GB", "256GB"]
+   
   },
 
   {
@@ -79,17 +82,19 @@
     "price": 999,
     "display": {
       "size": "5.8",
-      "type": "Super Retina XDR display"
+      "type": "Zaslon Super Retina XDR",
+      "tone": "True Tone",
+      "touch": "Haptic Touch"
     },
     "camera": {
-      "sensor": "12mp",
-      "recording": "4K Resolution on recordin available now"
+      "sensor": "16mp",
+      "recording": "4K Resolution 120FPS"
     },
     "unlock": "FaceID",
-    "processor": "A13",
+    "processor": "A14 Bionic",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "256GB"]
+    
   },
 
   {
@@ -101,18 +106,18 @@
     "colors": ["#a20018"],
     "price": 1399,
     "display": {
-      "size": "5.8",
-      "type": "Super Retina XDR display"
+      "size": "7.2",
+      "type": "Zaslon Retina 5K"
     },
     "camera": {
       "sensor": "12mp",
       "recording": "4K Resolution on recordin available now"
     },
     "unlock": "FaceID",
-    "processor": "A13",
-    "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "processor": "3,7 GHz 6-Core",
+    "battery": "Hight quality battery that last for more than 48h",
+    "capacity": ["512GB", "1TB"]
+    
   },
 
   {
@@ -124,18 +129,19 @@
     "colors": ["#dec9af", "#EBEBE3", "#FAD7BD"],
     "price": 1199,
     "display": {
-      "size": "5.8",
-      "type": "Super Retina XDR display"
+      "size": "11",
+      "type": "Liquid Retina",
+      "technology": "ProMotion"
     },
     "camera": {
       "sensor": "12mp",
       "recording": "4K Resolution on recordin available now"
     },
     "unlock": "FaceID",
-    "processor": "A13",
-    "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "processor": "A12Z Bionic sa 64‑bitnom arhitekturom",
+    "battery": "Hight quality battery that last for more than 32h",
+    "capacity": ["128GB", "512GB", "1TB"]
+    
   },
 
   {
@@ -147,18 +153,19 @@
     "colors": ["#3e5d69", "#dfefdb", "#535150", "#FAD7BD", "#000"],
     "price": 929,
     "display": {
-      "size": "5.8",
-      "type": "Super Retina XDR display"
+      "size": "7.3",
+      "type": "Liquid Retina",
+      "touch": "Haptic Touch"
     },
     "camera": {
       "sensor": "12mp",
       "recording": "4K Resolution on recordin available now"
     },
     "unlock": "FaceID",
-    "processor": "A13",
+    "processor": "A12Z Bionic sa 64‑bitnom arhitekturom",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "256GB"]
+    
   },
 
   {
@@ -170,18 +177,19 @@
     "colors": ["#4E5851", "#EBEBE3", "#535150", "#FAD7BD", "#000"],
     "price": 829,
     "display": {
-      "size": "5.8",
-      "type": "Super Retina XDR display"
+      "size": "5.9",
+      "type": "Super Retina XDR display",
+      "touch":"Haptic Touch"
     },
     "camera": {
       "sensor": "12mp",
       "recording": "4K Resolution on recordin available now"
     },
     "unlock": "FaceID",
-    "processor": "A13",
+    "processor": "A13 NG",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["128GB", "256GB", "512GB"]
+    
   },
 
   {
@@ -203,8 +211,8 @@
     "unlock": "FaceID",
     "processor": "A13",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "256GB"]
+    
   },
 
   {
@@ -226,8 +234,8 @@
     "unlock": "FaceID",
     "processor": "A13",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "256GB"]
+    
   },
 
   {
@@ -249,8 +257,8 @@
     "unlock": "FaceID",
     "processor": "A13",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "256GB"]
+    
   },
 
   {
@@ -272,8 +280,8 @@
     "unlock": "FaceID",
     "processor": "A13",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "256GB"]
+    
   },
 
   {
@@ -295,8 +303,8 @@
     "unlock": "FaceID",
     "processor": "A13",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "256GB"]
+    
   },
 
   {
@@ -308,8 +316,9 @@
     "colors": ["#4E5851", "#dec9af", "#4a4646"],
     "price": 870,
     "display": {
-      "size": "5.8",
-      "type": "Super Retina XDR display"
+      "size": "6.1",
+      "type":"Zaslon Retina 5K",
+      "touch":"Haptic Touch"
     },
     "camera": {
       "sensor": "12mp",
@@ -318,8 +327,8 @@
     "unlock": "FaceID",
     "processor": "A13",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["64GB", "128GB", "512GB"]
+    
   },
 
   {
@@ -336,13 +345,14 @@
     },
     "camera": {
       "sensor": "12mp",
-      "recording": "4K Resolution on recordin available now"
+      "recording": "4K Resolution",
+      "blend":"blende ƒ/1,8"
     },
     "unlock": "FaceID",
     "processor": "A13",
     "battery": "Hight quality battery that last for more than 26h",
-    "capacity": ["64GB", "128GB", "256GB"],
-    "inCart": 0
+    "capacity": ["256GB"]
+   
   }
 
 
