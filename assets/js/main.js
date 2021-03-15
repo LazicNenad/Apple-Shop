@@ -1,199 +1,702 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="Apple, Apple store, iphone, ipad, macbook" />
-    <meta
-      name="description"
-      content="Official apple store that provides all sort of apple products over the web. You 'll find a  great offer of our iphone , macbook and ipad devices."
-    />
-    <link rel="icon" sizes="60x60" href="assets/img/apple-icon-60x60.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Apple Shop</title>
-  </head>
-  <body>
-    <!-- Scroll To Top -->
-    <a href="#home" class="scrollTop"><i class="fas fa-chevron-up"></i></a>
+let modal = document.getElementById('myModal');
+// let btn = document.getElementById('modal');
+let firstName = document.getElementById('firstName');
+let lastName = document.getElementById('lastName');
+let email = document.getElementById('email');
+let textarea = document.getElementById('taMessage');
+let submit = document.getElementById('submit');
+let url = window.location.href.split('/');
+let adresa = url[url.length - 1];
+console.log(adresa);
 
-    <!-- Navigation bar -->
-    <nav class="navbar" id="home">
-      <div class="container flex">
-        <a href="index.html" class="navbar-logo"
-          ><i class="fab fa-apple"></i
-        ></a>
-        <ul class="navbar-nav flex" id="menu">
-          <!-- <li class="navbar-item">
-            <a href="#mac" class="navbar-link p-3">Mac</a>
-          </li>
-          <li class="navbar-item">
-            <a href="#iphone" class="navbar-link p-3">iPhone</a>
-          </li>
-          <li class="navbar-item">
-            <a href="#ipad" class="navbar-link p-3">iPad</a>
-          </li>
-          <li class="navbar-item">
-            <a href="#contact" class="navbar-link p-3">Contact</a>
-          </li>
-          <li class="navbar-item">
-            <a href="store.html" class="navbar-link p-3">Store</a>
-          </li>
-          -->
-          <li class="navbar-item">
-            <a href="cart.html" class="shopping-cart navbar-link"
-              ><i class="fas fa-shopping-cart p-3"></i
-            ></a>
-            <span id="itemNumber" class="text-white"></span>
-          </li>
-        </ul>
+// Document ready (jQuery)
+$(document).ready(function () {
+  checkLocalStorageData();
+
+  $('#searchInput').keyup(filterChange);
+  $('#submit').click(getFormValues);
+  $('#sort').change(filterChange);
+  //Scroll To Top
+  $('.scrollTop').on('click', () => {
+    window.scrollTo(0, 0);
+  });
+
+  $.ajax({
+    method: 'get',
+    url: 'assets/data/products.json',
+    success: function (data) {
+      setItemToLocalStorage('products', data);
+    },
+  });
+
+  //Initially hidden button
+  $('.scrollTop').hide(); // Initally hidden
+  $(document).scroll(function () {
+    if ($(document).scrollTop() > 200) {
+      $('.scrollTop').fadeIn();
+    } else {
+      $('.scrollTop').fadeOut();
+    }
+  });
+});
+
+submit.addEventListener('click', checkForm);
+
+// Window onload
+window.onload = function () {
+  ajaxCall('menu', printMenu);
+
+  if (adresa == 'index.html' || adresa == '/') {
+    submit.addEventListener('click', checkForm);
+  } else if (adresa == 'cart.html') {
+  } else if (adresa == 'store.html') {
+    ajaxCall('products', printProducts);
+
+    $.ajax({
+      method: 'get',
+      url: 'assets/data/models.json',
+      success: function (data) {
+        createDropDownList(data, 'modelsDDL', 'modelDiv', 'Model');
+      },
+      error: function (xhr, status, err) {
+        console.log(xhr);
+        console.log(status);
+        console.log(err);
+      },
+    });
+
+    $.ajax({
+      method: 'get',
+      url: 'assets/data/category.json',
+      success: function (data) {
+        createDropDownList(data, 'deviceTypeDDL', 'deviceTypeDiv', 'Device');
+      },
+      error: function (xhr, status, err) {
+        console.log(xhr);
+        console.log(status);
+        console.log(err);
+      },
+    });
+
+    // Modal
+
+    // btn.addEventListener('click', function (e) {
+    //   e.preventDefault;
+    //   modal.style.display = 'block';
+    // });
+    // span.addEventListener('click', function () {
+    //   modal.style.display = 'none';
+    // });
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
+  }
+};
+
+// Ajax Call Function
+function ajaxCall(fileName, functionName) {
+  $.ajax({
+    url: `assets/data/${fileName}.json`,
+    method: 'get',
+    dataType: 'json',
+    success: function (data) {
+      functionName(data);
+    },
+    error: function (xhr, status, err) {
+      console.log(xhr);
+      console.log(status);
+      console.log(err);
+    },
+  });
+}
+// Function for printing menu
+function printMenu(data) {
+  html = '';
+  console.log(data);
+
+  for (let object of data) {
+    html += `
+      <li class="navbar-item">
+        <a href="${object.href}" class="navbar-link p-3">${object.text}</a>
+      </li>  
+    `;
+  }
+
+  html += `
+  <li class="navbar-item">
+    <a href="cart.html" class="shopping-cart navbar-link"
+      ><i class="fas fa-shopping-cart p-3"></i
+    ></a>
+    <span id="itemNumber" class="text-white"></span>
+  </li>
+  `;
+
+  document.getElementById('menu').innerHTML = html;
+  onLoadCartNumber();
+}
+// Function for printing products
+function printProducts(data) {
+  onLoadCartNumber();
+  // data = filterDevice(data);
+  data = searchPhone(data);
+  data = sort(data);
+  data = filterDevice(data);
+  data = filterModel(data);
+  // console.log(data);
+  if (data.length == 0) {
+    $('#products').html(`
+    <div class=" col-12 no-products d-flex justify-content-center align-items-center mb-3">
+    <h3> Required product is not avaliable at the moment! </h3>
+    </div>
+    `);
+  } else {
+    html = '';
+
+    for (let obj of data) {
+      html += `
+    <div class="container col-lg-3 col-md-4 col-xs-12 my-4 ">
+      <div class="product">
+        <h5 class="text-center">${obj.name}</h5>
+        <a href="#" class="modals"><img class="slika-klik" src="${obj.img}" alt="${obj.name}" data-idm="${obj.id}"/></a>
+        <div class="color-holder d-flex justify-content-center">`;
+      for (let color of obj.colors) {
+        html += `
+        <div class="color" style="background-color: ${color}"></div>
+      `;
+      }
+      html += `
+        </div class=>
+          <hr/>
+          <p class="text-center"> Starting price $${obj.price}</p>
+          <a href="#" data-id=${obj.id} style="display: block" class="btn btn-primary m-auto add-cart">
+            Buy
+          </a>  
       </div>
-    </nav>
+    </div>  
+    `;
+    }
 
-    <!-- Section 1 -->
-    <section class="section-1 pt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 flex">
-            <div id="section-1-content">
-              <h1>iPhone 11 Pro</h1>
-              <h3>Pro cameras. Pro display. Pro performance.</h3>
-              <p>From $30/mo. or $679 with trade in.</p>
-              <a href="store.html" class="btn btn-primary mt-2">Buy</a>
-            </div>
-            <div id="section-1-image">
-              <img
-                class="image-fluid"
-                src="assets/img/iphone12pro.png"
-                alt="iPhone 12 Pro"
-              />
-            </div>
-          </div>
+    document.getElementById('products').innerHTML = html;
+  }
+  $('.add-cart').click(addToCart);
+  $('.slika-klik').click(openModal);
+}
+// Open modal
+function openModal(e) {
+  modal.style.display = 'block';
+  e.preventDefault();
+  let idImage = $(this).data('idm');
+  console.log(idImage);
+
+  let productsFromLS = getItemFromLocalStorage('products');
+  productsFromLS = productsFromLS.filter((p) => p.id == idImage);
+  console.log(productsFromLS);
+  printModal(productsFromLS);
+}
+
+//Modal Function
+function printModal(data) {
+  console.log(data);
+  console.log(data[0].name);
+  $('#myModal').html(`
+    <div class="modal-content">
+      <span class="close text-right"> &times; </span>
+      <h1 class="text-center"> ${data[0].name} </h1>
+      <hr>
+      <div class="divImg d-flex justify-content-center">
+        <img src="${data[0].img}" alt="${data[0].name}" class="prodImg">
+      </div>
+      <div class="tableDiv mt-2">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td> Price: </td>
+              <td> ${data[0].price} $ </td>
+            </tr>
+            <tr>
+              <td> Unlock </td>
+              <td> ${data[0].unlock} </td>
+            </tr>
+            <tr>
+              <td> Processor: </td>
+              <td> ${data[0].processor} </td>
+            </tr>
+            <tr>
+              <td> Battery: </td>
+              <td> ${data[0].battery} </td>
+            </tr>
+            <tr>
+              <td>                
+                  Display:             
+              </td>
+              <td>                
+                  ${printObject(data[0].display)}              
+              </td>
+            </tr>
+            <tr>
+              <td>Colors Available: </td>
+              <td class="d-flex  align-items-center"> ${printColors(
+                data[0].colors
+              )} </td>
+            </tr>
+            </tr>
+              <td> Camera: </td>
+              <td> ${printObject(data[0].camera)} </td>
+            </tr>
+            <tr>
+              <td> Capacity: </td>
+              <td> ${printArray(data[0].capacity)} </td>
+            </tr>
+          </tbody>
+        </table>  
+    </div>
+  `);
+  var span = $('.close')[0];
+  span.addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+  console.log(span);
+  function printObject(object) {
+    html = '';
+    for (let obj in object) {
+      html += `
+      <li>
+        ${obj}: ${object[obj]}
+      </li>
+      `;
+    }
+    return html;
+  }
+
+  function printColors(array) {
+    html = '';
+    array.forEach((color) => {
+      html += `
+      <span class="color" style="background-color: ${color}"> </span>
+      `;
+    });
+    return html;
+  }
+
+  function printArray(array) {
+    html = '';
+    array.forEach((element) => {
+      html += `
+      <li>
+        ${element}
+      </li>
+      `;
+    });
+    return html;
+  }
+}
+
+// Local Storage set and get
+function setItemToLocalStorage(name, data) {
+  localStorage.setItem(name, JSON.stringify(data));
+}
+
+function getItemFromLocalStorage(name) {
+  return JSON.parse(localStorage.getItem(name));
+}
+
+function addToCart(e) {
+  e.preventDefault();
+  let id = $(this).data('id');
+  let productsFromCart = getItemFromLocalStorage('productsCart');
+
+  if (productsFromCart) {
+    if (productIsAlreadyInCart()) {
+      updateQuantity();
+      onLoadCartNumber();
+    } else {
+      addToLocalStorage();
+      onLoadCartNumber();
+    }
+  } else {
+    addFirstItemToLocalStorage();
+    onLoadCartNumber();
+  }
+
+  // Add First Item To Local Storage
+  function addFirstItemToLocalStorage() {
+    let products = [];
+    products[0] = {
+      id: id,
+      quantity: 1,
+    };
+
+    setItemToLocalStorage('productsCart', products);
+  }
+
+  //Function if product is already in local storage
+  function productIsAlreadyInCart() {
+    return productsFromCart.filter((x) => x.id == id).length;
+  }
+
+  //Function updateQuantity
+  function updateQuantity() {
+    let productsFromLS = getItemFromLocalStorage('productsCart');
+    console.log(productsFromLS);
+    productsFromLS.forEach((value) => {
+      console.log(value);
+      if (value.id == id) {
+        value.quantity += 1;
+      }
+    });
+
+    setItemToLocalStorage('productsCart', productsFromLS);
+  }
+
+  // Function addToLocalStorage
+  function addToLocalStorage() {
+    let productsFromLS = getItemFromLocalStorage('productsCart');
+    productsFromLS.push({
+      id: id,
+      quantity: 1,
+    });
+    setItemToLocalStorage('productsCart', productsFromLS);
+  }
+}
+// Function on load cart number
+function onLoadCartNumber() {
+  let productNumbers = getItemFromLocalStorage('productsCart');
+  if (productNumbers != null) {
+    var broj = 0;
+    productNumbers.forEach((value) => {
+      broj += value.quantity;
+    });
+    // console.log(broj);
+    displayCartData();
+
+    // let numberOfProducts = productNumbers.length;
+    document.querySelector('#itemNumber').textContent = broj;
+  } else {
+    emptyCartData();
+  }
+}
+
+// Function for displaying on cart html
+function displayCartData() {
+  var productsFromLS = getItemFromLocalStorage('productsCart');
+  var allProducts = getItemFromLocalStorage('products');
+  let array = [];
+
+  array = allProducts.filter((p) => {
+    for (let prod of productsFromLS) {
+      if (p.id == prod.id) {
+        p.quantity = prod.quantity;
+        return true;
+      }
+    }
+  });
+  // console.log(array);
+
+  $('#products-header').html(`
+  <div class="col-12 mt-5">
+  <div class="row">
+    <div class="col-3 border text-center">
+      <h3>Product</h3>
+    </div>
+    <div class="col-3 border text-center">
+      <h3>Price</h3>
+    </div>
+    <div class="col-3 border text-center">
+      <h3>Quantity</h3>
+    </div>
+    <div class="col-3 border text-center">
+    <h3>Equals</h3>
+    </div>
+
+  </div>
+</div>
+  `);
+
+  printCartItems(array);
+}
+
+//Function for printing cart items
+function printCartItems(array) {
+  html = '';
+  var total = 0;
+  for (let obj of array) {
+    total += obj.price * obj.quantity;
+    console.log(obj);
+    html += `
+    <div class="col-12">
+      <div class="row">
+        <div class="col-3 border d-flex justify-content-center align-items-center quantity">
+          <i class="far fa-times-circle delete-icon" onclick="return removeFromCart(${
+            obj.id
+          })"></i>
+          <img src="${obj.img}" alt="${obj.name}" class="image-cart">   
+          <p class="pt-1"> ${obj.name}<p>      
+        </div>
+        <div class="col-3 border d-flex justify-content-center align-items-center">
+          <h5 class="text-center"> ${obj.price}$ </h5>
+        </div>
+        <div class="col-3 border d-flex justify-content-center align-items-center quantity">
+          <i class="fas fa-arrow-left" onclick="return decreseQuantity(${
+            obj.id
+          })"></i>
+          <h5 class="text-center"> ${obj.quantity} </h5>
+          <i class="fas fa-arrow-right" onclick="return increaseQuantity(${
+            obj.id
+          })"></i>
+        </div>
+        <div class="col-3 border d-flex justify-content-center align-items-center">
+          <h5> ${obj.price * obj.quantity} $ </h5>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Section 2 -->
-    <section class="section-2 p-5 my-5" id="mac">
-      <div class="container grid">
-        <img src="assets/img/macbook_pro.jpg" alt="Mac Book Pro" />
-        <div class="section-2-content flex">
-          <h5>16-inch model</h5>
-          <h1>MackBook Pro</h1>
-          <h3>The Best For Brightness</h3>
-          <a href="store.html" class="btn btn-primary mt-3">Buy</a>
-        </div>
-      </div>
-    </section>
+    
+    `;
+  }
+  html += `
+   <div class="mt-3">
+    <h2> Total: ${total} $ </h2>
+   </div>
+   <div class="row>
+   <div class="container">
+     <input type="button" id="button-buy" class="btn btn-primary my-4"  value="Buy">
+   </div>
+ </div>
+  `;
+  $('#products-cart').html(html);
+  $('#button-buy').click(function () {
+    alert('Thanks for buying');
+    clearCart();
+  });
+}
 
-    <!-- Section 3 -->
-    <section class="section-3 p-3 my-5" id="iphone">
-      <div class="container grid">
-        <div class="section-3-content flex">
-          <h3>iPhone 12 Pro Max</h3>
-          <h1>Just the right amount of everything.</h1>
-          <p>From $18.70/mo. or $449 with trade-in</p>
-          <a href="store.html" class="btn btn-primary">Buy</a>
-        </div>
-        <img src="assets/img/iphone12promax.jpg" alt="iPhone 12 Pro Max" />
-      </div>
-    </section>
+// Function clear Cart
+function clearCart() {
+  localStorage.removeItem('productsCart');
+  location.reload();
+}
 
-    <!-- Section 4 -->
-    <section class="section-4 p-5 my-5" id="ipad">
-      <div class="container grid">
-        <img src="assets/img/ipadpro.jpg" alt="iPad Pro" />
-        <div class="section-4-content flex">
-          <h1>iPad Pro</h1>
-          <h3>The most advanced iPad ever.</h3>
-          <p>Starting at $799</p>
-          <a href="store.html" class="btn btn-primary">Buy</a>
-        </div>
-      </div>
-    </section>
+//Empty cart data function
+function emptyCartData() {
+  $('#products-header').html(
+    '<h1 class="mt-3">Your cart is empty. <a href="store.html">Go to shop!</a></h1>'
+  );
+}
 
-    <!-- Section 5 -->
-    <section class="section-5 p-5 mt-5" id="contact">
-      <div class="container">
-        <h1 class="text-center">Contact Us</h1>
-        <form action="" class="form-group">
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            class="form-control my-3"
-            placeholder="First Name"
-          />
-          <span class="errorText" id="errorName"
-            >Name must start with a capital letter
-          </span>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            class="form-control my-3"
-            placeholder="Last Name"
-          />
-          <span class="errorText" id="errorLastName"
-            >Last name must start with a capital letter</span
-          >
-          <input
-            type="email"
-            name="email"
-            id="email"
-            class="form-control my-3"
-            placeholder="Email"
-          />
-          <span class="errorText" id="errorEmail">Email not valid</span>
-          <textarea
-            name="taMessage"
-            id="taMessage"
-            cols="20"
-            rows="5"
-            class="form-control my-3"
-            placeholder="Enter your message"
-          ></textarea>
-          <span class="errorText" id="errorTextArea"
-            >Message must contain at least 10 characters</span
-          >
+// Functiion remove from cart
+function removeFromCart(id) {
+  let products = getItemFromLocalStorage('productsCart');
+  let filtered = products.filter((p) => p.id != id);
 
-          <input
-            type="button"
-            value="Submit"
-            class="btn btn-primary text-center"
-            id="submit"
-          />
-          <span class="text-success" id="successText"
-            >Successfully submited data</span
-          >
-        </form>
-      </div>
-    </section>
+  setItemToLocalStorage('productsCart', filtered);
 
-    <!-- Footer -->
-    <footer class="footer py-3">
-      <div class="container flex">
-        <a href="author.html" class="developer">Made By Nenad Lazić</a>
-        <a href="sitemap.xml" class="footer-links"
-          ><i class="fas fa-sitemap"></i
-        ></a>
-        <a href="dokumentacija.pdf" class="footer-links"
-          ><i class="fas fa-file-alt"></i
-        ></a>
-      </div>
-    </footer>
+  displayCartData();
+}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
-</html>
+// Function for decreasing quantity
+function decreseQuantity(id) {
+  let products = getItemFromLocalStorage('productsCart');
+  products.forEach((value) => {
+    if (value.id == id) {
+      if (value.quantity >= 1) {
+        value.quantity--;
+      }
+    }
+  });
+
+  setItemToLocalStorage('productsCart', products);
+  displayCartData();
+}
+
+// Function for increasing quantity
+function increaseQuantity(id) {
+  let products = getItemFromLocalStorage('productsCart');
+  products.forEach((value) => {
+    if (value.id == id) {
+      value.quantity++;
+    }
+  });
+  // location.reload();
+
+  setItemToLocalStorage('productsCart', products);
+  displayCartData();
+}
+
+// Function for creating drop down List
+function createDropDownList(data, idList, idBlock, name) {
+  var ddl = `
+      <select id="${idList}" class="form-control my-4">
+        <option value="0"> Choose ${name} </option>
+  `;
+
+  for (let obj of data) {
+    ddl += `
+      <option value="${name == 'Device' ? obj.idCat : obj.idModel}">${
+      obj.name
+    }</option>
+    `;
+  }
+
+  ddl += '</select>';
+
+  document.getElementById(idBlock).innerHTML = ddl;
+  $('#' + idList).change(filterChange);
+}
+
+// Local Storage getting and setting values of form
+function getFormValues() {
+  let emailV = $('#email').val();
+  let firstNameV = $('#firstName').val();
+  let lastNameV = $('#lastName').val();
+  let textAreaV = $('#taMessage').val();
+  setUsersData(emailV, firstNameV, lastNameV, textAreaV);
+}
+
+// Setting users values
+function setUsersData(email, firstName, lastName, textArea) {
+  localStorage.setItem('email', email);
+  localStorage.setItem('firstName', firstName);
+  localStorage.setItem('lastName', lastName);
+  localStorage.setItem('textarea', textArea);
+}
+
+// Checking if local storage is empty
+function checkLocalStorageData() {
+  let email = localStorage.getItem('email');
+  let firstName = localStorage.getItem('firstName');
+  let lastName = localStorage.getItem('lastName');
+  let textarea = localStorage.getItem('textarea');
+  if (
+    email != null &&
+    firstName != null &&
+    lastName != null &&
+    textarea != null
+  ) {
+    $('#email').val(email);
+    $('#firstName').val(firstName);
+    $('#lastName').val(lastName);
+    $('#taMessage').val(textarea);
+  }
+}
+
+// Function Sort
+function sort(data) {
+  const sortType = document.getElementById('sort').value;
+  if (sortType == 'priceAsc') {
+    return data.sort((a, b) => (a.price > b.price ? 1 : -1));
+  } else if (sortType == 'priceDesc') {
+    return data.sort((a, b) => (a.price < b.price ? 1 : -1));
+  }
+  return data;
+}
+
+// Filter function
+function filterDevice(data) {
+  var deviceType = $('#deviceTypeDDL').val();
+  var modelType = $('#modelsDDL').val();
+  if (deviceType == 0) {
+    return data;
+  } else if (deviceType == 1) {
+    data = data.filter((x) => x.idCat == 1);
+  } else if (deviceType == 2) {
+    data = data.filter((x) => x.idCat == 2);
+  } else if (deviceType == 3) {
+    data = data.filter((x) => x.idCat == 3);
+  }
+  // createDropDownList(data, 'modelsDDL', 'modelDiv', 'Model');
+
+  console.log(data);
+  return data;
+}
+
+// Filter model function
+function filterModel(data) {
+  var deviceType = $('#deviceTypeDDL').val();
+  var modelType = $('#modelsDDL').val();
+  for (let obj of data) {
+    //console.log(obj.idModel);
+    if (modelType == 0) {
+      return data;
+    } else if (modelType == obj.idModel) {
+      // console.log('usao');
+      data = data.filter((x) => x.idModel == obj.idModel);
+      deviceType = obj.idCat;
+    }
+  }
+  return data;
+}
+
+// Seach Filtering
+function searchPhone(data) {
+  let searchVal = $('#searchInput').val().toLowerCase();
+  if (searchVal) {
+    return data.filter((el) => {
+      return el.name.toLowerCase().indexOf(searchVal) !== -1;
+    });
+  }
+  return data;
+}
+
+// Filter Change
+function filterChange() {
+  ajaxCall('products', printProducts);
+}
+
+// Regular Expression
+function checkForm() {
+  let regExName = /[A-ZĆČŠĐŽ][a-zčćžšđ]{2,12}/;
+  let regExEmail = /^[a-zA-Z0-9\.\-]+@[a-zA-Z0-9\.\-]+$/;
+
+  var error = [];
+  if (!regExName.test(firstName.value)) {
+    error.push('Name is not valid');
+    firstName.classList.remove('success');
+    firstName.classList.add('error');
+    errorName.style.display = 'block';
+  } else {
+    firstName.classList.remove('error');
+    firstName.classList.add('success');
+    errorName.style.display = 'none';
+  }
+
+  if (!regExName.test(lastName.value)) {
+    error.push('Last name is not valid');
+    lastName.classList.remove('success');
+    lastName.classList.add('error');
+    errorLastName.style.display = 'block';
+  } else {
+    lastName.classList.remove('error');
+    lastName.classList.add('success');
+    errorLastName.style.display = 'none';
+  }
+
+  if (!regExEmail.test(email.value)) {
+    error.push('Email Not Valid');
+    email.classList.remove('success');
+    email.classList.add('error');
+    errorEmail.style.display = 'block';
+  } else {
+    email.classList.remove('error');
+    email.classList.add('success');
+    errorEmail.style.display = 'none';
+  }
+
+  if (textarea.value.length < 10) {
+    error.push('Textarea not valid');
+    textarea.classList.remove('success');
+    textarea.classList.add('error');
+    errorTextArea.style.display = 'block';
+  } else {
+    textarea.classList.remove('error');
+    textarea.classList.add('success');
+    errorTextArea.style.display = 'none';
+  }
+
+  if (error.length == 0) {
+    successText.style.display = 'block';
+    location.reload();
+  }
+}
