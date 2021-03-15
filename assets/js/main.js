@@ -40,8 +40,6 @@ $(document).ready(function () {
   });
 });
 
-submit.addEventListener('click', checkForm);
-
 // Window onload
 window.onload = function () {
   ajaxCall('menu', printMenu);
