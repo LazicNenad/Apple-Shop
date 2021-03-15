@@ -651,6 +651,7 @@ function checkForm() {
   var error = [];
   if (!regExName.test(firstName.value)) {
     error.push('Name is not valid');
+    firstName.classList.remove('success');
     firstName.classList.add('error');
     errorName.style.display = 'block';
   } else {
@@ -661,6 +662,7 @@ function checkForm() {
 
   if (!regExName.test(lastName.value)) {
     error.push('Last name is not valid');
+    lastName.classList.remove('success');
     lastName.classList.add('error');
     errorLastName.style.display = 'block';
   } else {
@@ -671,6 +673,7 @@ function checkForm() {
 
   if (!regExEmail.test(email.value)) {
     error.push('Email Not Valid');
+    email.classList.remove('success');
     email.classList.add('error');
     errorEmail.style.display = 'block';
   } else {
@@ -681,6 +684,7 @@ function checkForm() {
 
   if (textarea.value.length < 10) {
     error.push('Textarea not valid');
+    textarea.classList.remove('success');
     textarea.classList.add('error');
     errorTextArea.style.display = 'block';
   } else {
