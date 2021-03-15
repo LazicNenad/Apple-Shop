@@ -85,98 +85,120 @@
 
     <!-- Section 2 -->
     <section class="section-2 p-5 my-5" id="mac">
-      <div class="container grid">
-        <img src="assets/img/macbook_pro.jpg" alt="Mac Book Pro" />
-        <div class="section-2-content flex">
-          <h5>16-inch model</h5>
-          <h1>MackBook Pro</h1>
-          <h3>The Best For Brightness</h3>
-          <a href="store.html" class="btn btn-primary mt-3">Buy</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="assets/img/macbook_pro.jpg" alt="Mac Book Pro" />
+          </div>
+          <div class="col-md-6">
+            <div class="section-2-content mt-3 text-center flex">
+              <h5>16-inch model</h5>
+              <h1>MackBook Pro</h1>
+              <h3>The Best For Brightness</h3>
+              <a href="store.html" class="btn btn-primary mt-3">Buy</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Section 3 -->
     <section class="section-3 p-3 my-5" id="iphone">
-      <div class="container grid">
-        <div class="section-3-content flex">
-          <h3>iPhone 12 Pro Max</h3>
-          <h1>Just the right amount of everything.</h1>
-          <p>From $18.70/mo. or $449 with trade-in</p>
-          <a href="store.html" class="btn btn-primary">Buy</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="section-3-content text-center mt-3 flex">
+              <h3>iPhone 12 Pro Max</h3>
+              <h1>Just the right amount of everything.</h1>
+              <p>From $18.70/mo. or $449 with trade-in</p>
+              <a href="store.html" class="btn btn-primary">Buy</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img src="assets/img/iphone12promax.jpg" alt="iPhone 12 Pro Max" />
+          </div>
         </div>
-        <img src="assets/img/iphone12promax.jpg" alt="iPhone 12 Pro Max" />
       </div>
     </section>
 
     <!-- Section 4 -->
     <section class="section-4 p-5 my-5" id="ipad">
-      <div class="container grid">
-        <img src="assets/img/ipadpro.jpg" alt="iPad Pro" />
-        <div class="section-4-content flex">
-          <h1>iPad Pro</h1>
-          <h3>The most advanced iPad ever.</h3>
-          <p>Starting at $799</p>
-          <a href="store.html" class="btn btn-primary">Buy</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="assets/img/ipadpro.jpg" alt="iPad Pro" />
+          </div>
+          <div class="col-md-6">
+            <div class="section-4-content text-center mt-5 flex">
+              <h1>iPad Pro</h1>
+              <h3>The most advanced iPad ever.</h3>
+              <p>Starting at $799</p>
+              <a href="store.html" class="btn btn-primary">Buy</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Section 5 -->
     <section class="section-5 p-5 mt-5" id="contact">
-      <div class="container">
-        <h1 class="text-center">Contact Us</h1>
-        <form action="" class="form-group">
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            class="form-control my-3"
-            placeholder="First Name"
-          />
-          <span class="errorText" id="errorName"
-            >Name must start with a capital letter
-          </span>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            class="form-control my-3"
-            placeholder="Last Name"
-          />
-          <span class="errorText" id="errorLastName"
-            >Last name must start with a capital letter</span
-          >
-          <input
-            type="email"
-            name="email"
-            id="email"
-            class="form-control my-3"
-            placeholder="Email"
-          />
-          <span class="errorText" id="errorEmail">Email not valid</span>
-          <textarea
-            name="taMessage"
-            id="taMessage"
-            cols="20"
-            rows="5"
-            class="form-control my-3"
-            placeholder="Enter your message"
-          ></textarea>
-          <span class="errorText" id="errorTextArea"
-            >Message must contain at least 10 characters</span
-          >
+      <h1 class="text-center">Contact Us</h1>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <form action="" class="form-group">
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                class="form-control my-3"
+                placeholder="First Name"
+              />
+              <span class="errorText" id="errorName"
+                >Name must start with a capital letter
+              </span>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                class="form-control my-3"
+                placeholder="Last Name"
+              />
+              <span class="errorText" id="errorLastName"
+                >Last name must start with a capital letter</span
+              >
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="form-control my-3"
+                placeholder="Email"
+              />
+              <span class="errorText" id="errorEmail">Email not valid</span>
+              <textarea
+                name="taMessage"
+                id="taMessage"
+                cols="20"
+                rows="5"
+                class="form-control my-3"
+                placeholder="Enter your message"
+              ></textarea>
+              <span class="errorText" id="errorTextArea"
+                >Message must contain at least 10 characters</span
+              >
 
-          <input
-            type="button"
-            value="Submit"
-            class="btn btn-primary text-center"
-            id="submit"
-          />
-          <span class="text-success" id="successText"
-            >Successfully submited data</span
-          >
-        </form>
+              <input
+                type="button"
+                value="Submit"
+                class="btn btn-primary text-center"
+                id="submit"
+              />
+              <span class="text-success" id="successText"
+                >Successfully submited data</span
+              >
+            </form>
+          </div>
+        </div>
       </div>
     </section>
 
