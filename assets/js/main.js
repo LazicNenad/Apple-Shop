@@ -44,7 +44,7 @@ $(document).ready(function () {
 window.onload = function () {
   ajaxCall('menu', printMenu);
 
-  if (adresa == 'index.html' || adresa == '/') {
+  if (adresa == 'index.html' || adresa == '/' || adresa == '') {
     submit.addEventListener('click', checkForm);
   } else if (adresa == 'cart.html') {
   } else if (adresa == 'store.html') {
@@ -96,19 +96,23 @@ window.onload = function () {
 
 // Ajax Call Function
 function ajaxCall(fileName, functionName) {
-  $.ajax({
-    url: `assets/data/${fileName}.json`,
-    method: 'get',
-    dataType: 'json',
-    success: function (data) {
-      functionName(data);
-    },
-    error: function (xhr, status, err) {
-      console.log(xhr);
-      console.log(status);
-      console.log(err);
-    },
-  });
+  try {
+    $.ajax({
+      url: `assets/data/${fileName}.json`,
+      method: 'get',
+      dataType: 'json',
+      success: function (data) {
+        functionName(data);
+      },
+      error: function (xhr, status, err) {
+        console.log(xhr);
+        console.log(status);
+        console.log(err);
+      },
+    });
+  } catch (error) {
+    alert('Problem with fetching data');
+  }
 }
 // Function for printing menu
 function printMenu(data) {
