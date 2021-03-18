@@ -503,7 +503,7 @@ function decreseQuantity(id) {
   let products = getItemFromLocalStorage('productsCart');
   products.forEach((value) => {
     if (value.id == id) {
-      if (value.quantity >= 1) {
+      if (value.quantity >= 2) {
         value.quantity--;
       }
     }
